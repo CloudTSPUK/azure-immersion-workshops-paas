@@ -98,7 +98,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="StoreSampleDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Books" EntityType="Self.Book" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <AssociationSet Name="FK__Orders__BookId__38996AB5" Association="Self.FK__Orders__BookId__38996AB5">
@@ -111,7 +111,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StoreSampleModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="StoreSampleModelStoreContainer" CdmEntityContainer="StoreSampleDbContext">
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="StoreSampleModel.Book">
               <MappingFragment StoreEntitySet="Books">

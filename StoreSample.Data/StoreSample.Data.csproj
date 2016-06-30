@@ -54,10 +54,16 @@
     <Compile Include="Book.cs">
       <DependentUpon>StoreSampleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookSearchQuery.cs" />
+    <Compile Include="Models\BookSearchResult.cs" />
+    <Compile Include="Interfaces\IBookQueryRepository.cs" />
+    <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>StoreSampleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\SqlBookQueryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\SqlOrderRepository.cs" />
     <Compile Include="StoreSampleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
