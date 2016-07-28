@@ -1,10 +1,11 @@
-﻿using System;
+﻿using StoreSample.Data.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace StoreSample.Data.Repositories
 {
-    public class SqlBookQueryRepository : IBookQueryRepository
+    public class SqlBookQueryRepository : IBookQueryRepository, IBookSearchRepository
     {     
         public SqlBookQueryRepository(StoreSampleDbContext storeSampleDbContext)
         {

@@ -54,6 +54,7 @@
     <Compile Include="Book.cs">
       <DependentUpon>StoreSampleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBookSearchRepository.cs" />
     <Compile Include="Models\BookSearchQuery.cs" />
     <Compile Include="Models\BookSearchResult.cs" />
     <Compile Include="Interfaces\IBookQueryRepository.cs" />

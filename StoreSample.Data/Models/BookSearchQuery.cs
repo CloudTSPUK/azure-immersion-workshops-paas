@@ -2,5 +2,6 @@
 {
     public class BookSearchQuery
     {
+        public string SearchTerm { get; set; }
     }
 }
