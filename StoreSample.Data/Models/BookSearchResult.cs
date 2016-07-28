@@ -9,10 +9,11 @@ namespace StoreSample.Data
     /// </summary>
     public class BookQueryResult
     {
-        /// <summary>
-        /// Gets or sets the total count of results in the database. This number
-        /// is the TOTAL number of books in the system, unlike <see cref="Count"/>.
-        /// </summary>
+        public BookQueryResult()
+        {
+            this.Result = new List<Book>();
+        }
+
         public int TotalCount { get; set; }
 
         /// <summary>
