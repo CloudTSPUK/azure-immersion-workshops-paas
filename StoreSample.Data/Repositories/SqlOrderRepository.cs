@@ -44,11 +44,13 @@
             return this.storeSampleDbContext.Orders.ToList();
         }
 
-        public int SaveChanges()
+        public bool SaveChanges()
         {
             Guard.NotNull(this.storeSampleDbContext, "The order database context connection is null. Cannot query the order database.");
 
-            return this.storeSampleDbContext.SaveChanges();
+            int result = this.storeSampleDbContext.SaveChanges();
+
+            return result != 0;
         }
     }
 }

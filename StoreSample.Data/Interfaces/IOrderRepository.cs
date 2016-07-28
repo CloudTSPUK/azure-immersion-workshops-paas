@@ -35,6 +35,6 @@ namespace StoreSample.Data.Interfaces
         /// <returns>
         /// Returns an integer that indicates the success or failure of persisting the new orders back to the order database.
         /// </returns>
-        int SaveChanges();
+        bool SaveChanges();
     }
 }
