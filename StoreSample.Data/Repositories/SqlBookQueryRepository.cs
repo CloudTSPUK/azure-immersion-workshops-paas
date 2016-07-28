@@ -1,7 +1,7 @@
 ﻿namespace StoreSample.Data.Repositories
 {
+    using Infrastructure;
     using StoreSample.Data.Interfaces;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -16,21 +16,21 @@
 
         public IList<Book> GetAllBooks()
         {
-            this.CheckDbContext();
+            Guard.NotNull(this.storeSampleDbContext, "The book database context connection is null. Cannot query the book database.");
 
             return this.storeSampleDbContext.Books.ToList();
         }
 
         public Book GetBookById(int bookId)
         {
-            this.CheckDbContext();
+            Guard.NotNull(this.storeSampleDbContext, "The book database context connection is null. Cannot query the book database.");
 
             return this.storeSampleDbContext.Books.SingleOrDefault(b => b.IdBook == bookId);
         }
 
         public BookQueryResult QueryBooks(BookSearchQuery bookSearchQuery)
         {
-            this.CheckDbContext();
+            Guard.NotNull(this.storeSampleDbContext, "The book database context connection is null. Cannot query the book database.");
 
             string searchTerm = bookSearchQuery.SearchTerm.ToLowerInvariant();
 
@@ -44,14 +44,6 @@
                 Result = queryResults,
                 TotalCount = this.storeSampleDbContext.Books.Count()
             };
-        }
-
-        private void CheckDbContext()
-        {
-            if (this.storeSampleDbContext == null)
-            {
-                throw new NullReferenceException("The book database context connection is null. Cannot query the book database.");
-            }
         }
     }
 }

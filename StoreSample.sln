@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreSample.Web", "StoreSample.Web\StoreSample.Web.csproj", "{B661E672-8F4B-4AB1-A3F9-5B5B083707E8}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{90A3C265-DDC3-42CF-9B40-678DA2C47DF2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreSample.WebJobs", "StoreSample.WebJobs\StoreSample.WebJobs.csproj", "{EE3CC13C-F668-4FAB-BA9D-2854C5F642B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreSample.Infrastructure", "StoreSample.Infrastructure\StoreSample.Infrastructure.csproj", "{F06D1E03-AE59-4F8D-99FB-A512F0067239}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{EE3CC13C-F668-4FAB-BA9D-2854C5F642B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE3CC13C-F668-4FAB-BA9D-2854C5F642B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE3CC13C-F668-4FAB-BA9D-2854C5F642B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F06D1E03-AE59-4F8D-99FB-A512F0067239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F06D1E03-AE59-4F8D-99FB-A512F0067239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F06D1E03-AE59-4F8D-99FB-A512F0067239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F06D1E03-AE59-4F8D-99FB-A512F0067239}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
