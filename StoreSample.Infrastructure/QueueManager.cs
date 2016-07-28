@@ -57,9 +57,9 @@
 
             T queueMessageObject = JsonConvert.DeserializeObject<T>(queueMessage.AsString);
 
-            messageOperation(queueMessageObject);
+            T processedMessage = messageOperation(queueMessageObject);
 
-            if (messageDeletionValidator())
+            if (processedMessage != null && messageDeletionValidator())
             {
                 this.queue.DeleteMessage(queueMessage);
             }

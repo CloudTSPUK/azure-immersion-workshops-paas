@@ -25,9 +25,7 @@
 
             Guard.NotNull(newOrder, "The provided order was null. Cannot create a new order in the order database from a null order.");
 
-            this.storeSampleDbContext.Orders.Add(newOrder);
-
-            return newOrder;
+            return this.storeSampleDbContext.Orders.Add(newOrder);
         }
 
         public Order GetOrderById(int orderId)
