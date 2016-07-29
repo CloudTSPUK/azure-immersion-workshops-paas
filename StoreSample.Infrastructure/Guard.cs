@@ -26,7 +26,7 @@
         {
             if(string.IsNullOrEmpty(item))
             {
-                throw new ArgumentNullException(message);
+                throw new ArgumentException(message);
             }
         }
     }

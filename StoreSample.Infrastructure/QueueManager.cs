@@ -18,7 +18,7 @@
         {
             Guard.NotNullOrEmpty(storageConnectionSetting, "The storage connection setting was null. Cannot identify which cloud storage account to use.");
 
-            Guard.NotNull(queueName, "The item to be added to the queue was null. Cannot add a null item to the queue.");
+            Guard.NotNullOrEmpty(queueName, "The item to be added to the queue was null. Cannot add a null item to the queue.");
 
             this.queueName = queueName;
        
