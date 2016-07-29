@@ -90,6 +90,16 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreSample.Data\StoreSample.Data.csproj">
+      <Project>{0c7b4c7c-cabd-46d8-b03f-1c99b52cb3ea}</Project>
+      <Name>StoreSample.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoreSample.Infrastructure\StoreSample.Infrastructure.csproj">
+      <Project>{f06d1e03-ae59-4f8d-99fb-a512f0067239}</Project>
+      <Name>StoreSample.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

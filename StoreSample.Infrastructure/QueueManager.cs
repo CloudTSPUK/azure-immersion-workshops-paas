@@ -16,7 +16,7 @@
 
         public QueueManager(string storageConnectionSetting, string queueName)
         {
-            Guard.NotNull(storageConnectionSetting, "The storage connection setting was null. Cannot identify which cloud storage account to use.");
+            Guard.NotNullOrEmpty(storageConnectionSetting, "The storage connection setting was null. Cannot identify which cloud storage account to use.");
 
             Guard.NotNull(queueName, "The item to be added to the queue was null. Cannot add a null item to the queue.");
 
@@ -46,23 +46,6 @@
             CloudQueueMessage queueMessage = new CloudQueueMessage(jsonSerialisedItem);
 
             this.queue.AddMessage(queueMessage);
-        }
-
-        public void DequeueMessage<T>(Func<T,T> messageOperation, Func<bool> messageDeletionValidator)
-        {
-            Guard.NotNull(messageOperation, "The message operation function was null. Cannot process the queue message.");
-            Guard.NotNull(messageDeletionValidator, "The message deletion validator function was null. Cannot delete the queue message.");
-
-            CloudQueueMessage queueMessage = this.queue.GetMessage();
-
-            T queueMessageObject = JsonConvert.DeserializeObject<T>(queueMessage.AsString);
-
-            T processedMessage = messageOperation(queueMessageObject);
-
-            if (processedMessage != null && messageDeletionValidator())
-            {
-                this.queue.DeleteMessage(queueMessage);
-            }
         }
     }
 }
