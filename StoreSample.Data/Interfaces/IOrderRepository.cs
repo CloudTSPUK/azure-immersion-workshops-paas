@@ -27,6 +27,14 @@ namespace StoreSample.Data.Interfaces
         /// </summary>
         /// <returns>Returns the <see cref="Order"/> object that was created for this particular
         /// order instance.</returns>
-        Order AddOrder();
+        Order AddOrder(Order newOrder);
+
+        /// <summary>
+        /// Save a new order back to the order repository.
+        /// </summary>
+        /// <returns>
+        /// Returns an integer that indicates the success or failure of persisting the new orders back to the order database.
+        /// </returns>
+        bool SaveChanges();
     }
 }

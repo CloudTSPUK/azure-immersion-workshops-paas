@@ -1,20 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-
-namespace StoreSample.WebJobs
+﻿namespace StoreSample.WebJobs
 {
+    using Data;
+    using Data.Interfaces;
+    using Infrastructure;
+    using Microsoft.Azure.WebJobs;
+    using System.IO;
+
     public class Functions
     {
-        // This function will get triggered/executed when a new message is written 
-        // on an Azure Queue called queue.
-        public static void ProcessQueueMessage([QueueTrigger("queue")] string message, TextWriter log)
+        private static IOrderRepository _orderRepository;
+
+        public Functions(IOrderRepository orderRepository)
         {
-            log.WriteLine(message);
+            Guard.NotNull(orderRepository, "The order repository passed to the web job was null. Unable to handle orders.");
+           
+            _orderRepository = orderRepository;
+        }
+
+        /// <summary>
+        /// This function will get triggered/executed when a new message is written on an Azure Queue called queue.
+        /// 
+        /// The use of the QueueTrigger here automates the dequeueing, deserialisation, error handling associated with working with a queue. Find more details here
+        /// https://azure.microsoft.com/en-us/documentation/articles/websites-dotnet-webjobs-sdk-storage-queues-how-to/
+        /// </summary>
+        /// <param name="newOrder">A new order object that has been submitted to the order queue. Where the order queue is specified in the application settings.</param>
+        /// <param name="log">Logging mechanism for the queue processing function.</param>
+        public static void ProcessQueueMessage([QueueTrigger("%targetQueue%")] Order newOrder, TextWriter log)
+        {
+            Guard.NotNull(newOrder, "The order retrieved from the queue was null. Unable to process the order.");
+
+            _orderRepository.AddOrder(newOrder);
+
+            _orderRepository.SaveChanges();
         }
     }
 }
