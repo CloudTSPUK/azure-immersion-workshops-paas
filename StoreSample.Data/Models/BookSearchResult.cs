@@ -17,9 +17,16 @@ namespace StoreSample.Data
         public int TotalCount { get; set; }
 
         /// <summary>
-        /// Gets or sets the count of the books returned in this particular query.
+        /// Gets the count of the books returned in this particular query.
         /// </summary>
-        public int Count { get; set; }
+        public int Count
+        {
+            get
+            {
+                return this.Result.Count;
+
+            }
+        }
 
         /// <summary>
         /// Gets or sets the result list.
