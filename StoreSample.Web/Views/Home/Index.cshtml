@@ -1,25 +1,29 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@{ ViewBag.Title = "Home Page"; }
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-12">
+        <!-- book container -->
+        <ul class="book-container">
+            <li>
+                <div class="product-inner">
+                    <a href="http://demo.toko.press/bookie2/standard/book/lyrics-of-the-lalala-musical/" class="product-link">
+                        <figure class="product-image-box">
+                            <img width="250" height="333" src="http://demo.toko.press/bookie2/standard/wp-content/uploads/2016/06/book-23-250x333.jpg"
+                                alt="book-23" title="book-23"></figure>
+                        <div>
+                            <h3>Lyrics of the Lalala Musical</h3>
+                            <span class="author">Saifudin A.</span>
+                            <span class="price">
+                                <span class="amount">
+                                    <del><span class="currency">£</span>3.00</del>
+                                <span class="currency">£</span>2.00
+                            </span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <!-- /book container -->
     </div>
 </div>

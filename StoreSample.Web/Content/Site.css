@@ -24,9 +24,19 @@ header ul { list-style: none; margin: 62px 0;  line-height: 23px; font-size: 16p
 header ul li { float: left; margin: 0 10px; padding: 0 5px;}
 header ul li.selected { border-bottom: 1px solid #007acc;}
 
-header.search { background: white; padding: 30px 0;}
+header.search { background: white; padding: 30px 0; margin-bottom: 40px;}
 header.search input { border-radius: 0; background: #efefef;box-shadow: none; border-color: #2f2b35; font-size: 12px; }
 header.search input:focus { box-shadow: none; border-color: #2f2b35; }
 header.search .row { width: 50%; }
 header.search .btn-search { background: #2f2b35; border-radius: 0;}
 header.search .btn-search:hover { color: white; }
+
+.book-container { width: 100%; list-style: none; margin: 0; padding: 0; }
+.book-container li { width: 23%; float: left; padding: 15px; margin: 1%; background: white; color: #222222;  }
+.book-container li a { color: #222222; }
+.book-container li a:hover { text-decoration: none; }
+.book-container li img { max-width: 100%; height: auto; }
+.book-container li h3 { width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size: 18px; text-align: center; }
+.book-container li .author { text-align: center; text-overflow: ellipsis; overflow: hidden; width: 100%; display: block; margin-bottom:  10px; }
+.book-container li .price .amount { color: #222222;font-size: 20px; text-align: center; width: 100%; display: block;}
+.book-container li .price del { font-size: 0.8em; opacity: 0.5;}
