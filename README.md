@@ -1,1 +1,1 @@
-# azure-immersion-workshops-paas
+# StoreSample - PaaS Immersion Workshop
