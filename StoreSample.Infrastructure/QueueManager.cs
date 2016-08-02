@@ -10,19 +10,23 @@
     public class QueueManager : IQueueManager
     {
         private CloudStorageAccount cloudStorageAccount;
-        private string queueName;
+        private string targetQueueName;
 
-        private CloudQueue queue;
+        private CloudQueue azureQueue;
 
-        public QueueManager(string storageConnectionSetting, string queueName)
+        public QueueManager(string storageConnectionSetting, string targetQueueSetting)
         {
             Guard.NotNullOrEmpty(storageConnectionSetting, "The storage connection setting was null. Cannot identify which cloud storage account to use.");
 
-            Guard.NotNullOrEmpty(queueName, "The item to be added to the queue was null. Cannot add a null item to the queue.");
+            Guard.NotNullOrEmpty(targetQueueSetting, "The item to be added to the queue was null. Cannot add a null item to the queue.");
 
-            this.queueName = queueName;
-       
-            if (!CloudStorageAccount.TryParse(CloudConfigurationManager.GetSetting(storageConnectionSetting), out this.cloudStorageAccount))
+            this.targetQueueName = CloudConfigurationManager.GetSetting(targetQueueSetting);
+
+            Guard.NotNullOrEmpty(this.targetQueueName, "Either the target queue setting does not exist in your cloud application.");
+
+            string storageConnectionString = CloudConfigurationManager.GetSetting(storageConnectionSetting);
+
+            if (!CloudStorageAccount.TryParse(storageConnectionString, out this.cloudStorageAccount))
             {
                 throw new ArgumentException("Could not parse the Azure Storage Connection string. Unable to connect to Azure Storage.");
             }
@@ -32,9 +36,9 @@
         {
             CloudQueueClient orderQueueClient = cloudStorageAccount.CreateCloudQueueClient();
 
-            this.queue = orderQueueClient.GetQueueReference(this.queueName);
+            this.azureQueue = orderQueueClient.GetQueueReference(this.targetQueueName);
 
-            return this.queue.CreateIfNotExists();
+            return this.azureQueue.CreateIfNotExists();
         }
 
         public void EnqueueMessage<T>(T item)
@@ -45,7 +49,7 @@
 
             CloudQueueMessage queueMessage = new CloudQueueMessage(jsonSerialisedItem);
 
-            this.queue.AddMessage(queueMessage);
+            this.azureQueue.AddMessage(queueMessage);
         }
     }
 }
