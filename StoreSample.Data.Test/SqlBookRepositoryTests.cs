@@ -158,6 +158,7 @@
             Assert.AreEqual(expectedBook.Author, actualBookQueryResult.Result[0].Author);
         }
 
+        [TestMethod]
         public void QueryBooks_DescriptionSearch_ExpectedBookReturned()
         {
             mockDataStore.Books.Add(expectedBook);
@@ -174,6 +175,7 @@
             Assert.AreEqual(expectedBook.Description, actualBookQueryResult.Result[0].Description);
         }
 
+        [TestMethod]
         public void QueryBooks_TitleSearch_ExpectedBookReturned()
         {
             mockDataStore.Books.Add(expectedBook);
