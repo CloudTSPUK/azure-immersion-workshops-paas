@@ -12,43 +12,46 @@
     /// </summary>
     public class SqlOrderRepository : IOrderRepository
     {
-        private StoreSampleDbContext storeSampleDbContext;
+        private IStoreSampleDataSource sqlStoreSampleDataSource;
 
-        public SqlOrderRepository(StoreSampleDbContext storeSampleDbContext)
+        public SqlOrderRepository(IStoreSampleDataSource sqlStoreSampleDataSource)
         {
-            this.storeSampleDbContext = storeSampleDbContext;
+            Guard.NotNull(sqlStoreSampleDataSource, "The passed sql data source was null. Cannot instantiate a sql book repository.");
+
+            this.sqlStoreSampleDataSource = sqlStoreSampleDataSource;
         }
 
         public Order AddOrder(Order newOrder)
         {
-            Guard.NotNull(this.storeSampleDbContext, "The order database context connection is null. Cannot query the order database.");
+            CheckSqlDataSource();
 
-            Guard.NotNull(newOrder, "The provided order was null. Cannot create a new order in the order database from a null order.");
-
-            return this.storeSampleDbContext.Orders.Add(newOrder);
+            return this.sqlStoreSampleDataSource.AddNewOrder(newOrder);
         }
 
         public Order GetOrderById(int orderId)
         {
-            Guard.NotNull(this.storeSampleDbContext, "The order database context connection is null. Cannot query the order database.");
+            CheckSqlDataSource();
 
-            return this.storeSampleDbContext.Orders.SingleOrDefault(order => order.IdOrder == orderId);
+            return this.sqlStoreSampleDataSource.Orders.SingleOrDefault(order => order.IdOrder == orderId);
         }
 
         public IList<Order> GetOrders()
         {
-            Guard.NotNull(this.storeSampleDbContext, "The order database context connection is null. Cannot query the order database.");
+            CheckSqlDataSource();
 
-            return this.storeSampleDbContext.Orders.ToList();
+            return this.sqlStoreSampleDataSource.Orders.ToList();
         }
 
         public bool SaveChanges()
         {
-            Guard.NotNull(this.storeSampleDbContext, "The order database context connection is null. Cannot query the order database.");
+            CheckSqlDataSource();
 
-            int result = this.storeSampleDbContext.SaveChanges();
+            return this.sqlStoreSampleDataSource.SaveChanges();
+        }
 
-            return result != 0;
+        private void CheckSqlDataSource()
+        {
+            Guard.NotNull(sqlStoreSampleDataSource, "The book SQL order datasource is null. Cannot query the order datasource.");
         }
     }
 }

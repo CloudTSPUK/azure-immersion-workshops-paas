@@ -96,14 +96,6 @@
             QueueManager queueManager = new QueueManager(this.storageConnectionSetting, targetQueueSetting);
         }
 
-        [TestMethod]
-        public void Constructor_CorrectParameters_ValidQueueManagerCreated()
-        {
-            QueueManager queueManager = new QueueManager(this.storageConnectionSetting, this.targetQueueSetting);
-
-            Assert.IsNotNull(queueManager);
-        }
-
         #endregion
 
 
@@ -116,6 +108,14 @@
         /// that the overall functionality of the QueueManager works as expected with Azure. The QueueManagers CreateQueue
         /// and EnqueueMessage methods modify external state as opposed to return observable values.
         /// </summary>
+
+        [TestMethod]
+        public void Constructor_CorrectParameters_ValidQueueManagerCreated()
+        {
+            QueueManager queueManager = new QueueManager(this.storageConnectionSetting, this.targetQueueSetting);
+
+            Assert.IsNotNull(queueManager);
+        }
 
         [TestMethod]
         public void CreateQueue_ValidQueueCreation_AzureQueueCreatedAndRetrievedFromAzure()

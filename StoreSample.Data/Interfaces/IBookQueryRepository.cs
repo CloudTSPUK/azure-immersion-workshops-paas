@@ -11,7 +11,7 @@ namespace StoreSample.Data.Interfaces
         /// Gets a non-filtered, non-ordered list of all the books in the system.
         /// </summary>
         /// <returns>Returns a simple list containing all the books.</returns>
-        IList<Book> GetAllBooks();
+        List<Book> GetAllBooks();
 
         /// <summary>
         /// Gets a book by its ID.

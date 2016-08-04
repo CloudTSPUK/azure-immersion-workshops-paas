@@ -55,6 +55,7 @@
       <DependentUpon>StoreSampleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IBookSearchRepository.cs" />
+    <Compile Include="Interfaces\IStoreSampleDataSource.cs" />
     <Compile Include="Models\BookSearchQuery.cs" />
     <Compile Include="Models\BookSearchResult.cs" />
     <Compile Include="Interfaces\IBookQueryRepository.cs" />
@@ -62,9 +63,10 @@
     <Compile Include="Order.cs">
       <DependentUpon>StoreSampleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\SqlBookQueryRepository.cs" />
+    <Compile Include="Repositories\SqlBookRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\SqlOrderRepository.cs" />
+    <Compile Include="Repositories\SqlStoreSampleDataSource.cs" />
     <Compile Include="StoreSampleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
