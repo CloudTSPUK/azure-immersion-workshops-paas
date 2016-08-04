@@ -21,11 +21,11 @@
             this.sqlStoreSampleDataSource = sqlStoreSampleDataSource;
         }
 
-        public Order AddOrder(Order newOrder)
+        public List<Order> GetAllOrders()
         {
             CheckSqlDataSource();
 
-            return this.sqlStoreSampleDataSource.AddNewOrder(newOrder);
+            return this.sqlStoreSampleDataSource.Orders.ToList();
         }
 
         public Order GetOrderById(int orderId)
@@ -35,11 +35,13 @@
             return this.sqlStoreSampleDataSource.Orders.SingleOrDefault(order => order.IdOrder == orderId);
         }
 
-        public IList<Order> GetOrders()
+        public Order AddOrder(Order newOrder)
         {
+            Guard.NotNull(newOrder, "The provided order was null. Cannot add a null order to order datasource.");
+
             CheckSqlDataSource();
 
-            return this.sqlStoreSampleDataSource.Orders.ToList();
+            return this.sqlStoreSampleDataSource.AddNewOrder(newOrder);
         }
 
         public bool SaveChanges()

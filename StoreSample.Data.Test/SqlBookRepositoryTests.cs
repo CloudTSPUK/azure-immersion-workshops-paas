@@ -14,6 +14,10 @@
         private static List<Book> expectedBooks = new List<Book>();
         private static Book expectedBook;
 
+        private IStoreSampleDataSource mockDataStore;
+        private IBookQueryRepository bookQueryRepository;
+        private IBookSearchRepository bookSearchRespository;
+
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
@@ -47,19 +51,41 @@
             };
         }
 
+        [TestInitialize]
+        public void Initialize()
+        {
+            this.mockDataStore = mockSqlStoreSampleDataSource.Object;
+
+            this.bookQueryRepository = new SqlBookRepository(this.mockDataStore);
+            this.bookSearchRespository = new SqlBookRepository(this.mockDataStore);
+        }
+
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void Constructor_NullStoreSampleDbContext_NullReferenceException()
+        public void Constructor_NullStoreSampleDataSource_NullReferenceExceptionQueryRepository()
         {
             IBookQueryRepository bookRepository = new SqlBookRepository(null);
         }
 
         [TestMethod]
-        public void Constructor_ValidStoreSampleDataSource_SqlBookRepositoryInstance()
+        public void Constructor_ValidStoreSampleDataSource_SqlBookQueryRepositoryInstance()
         {
-            IStoreSampleDataSource mockDataStore = mockSqlStoreSampleDataSource.Object;
+            IBookQueryRepository bookRepository = new SqlBookRepository(this.mockDataStore);
 
-            IBookQueryRepository bookRepository = new SqlBookRepository(mockDataStore);
+            Assert.IsNotNull(bookRepository);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Constructor_NullStoreSampleDataSource_NullReferenceExceptionSearchRepository()
+        {
+            IBookSearchRepository bookRepository = new SqlBookRepository(null);
+        }
+
+        [TestMethod]
+        public void Constructor_ValidStoreSampleDataSource_SqlBookSearchRepositoryInstance()
+        {
+            IBookSearchRepository bookRepository = new SqlBookRepository(this.mockDataStore);
 
             Assert.IsNotNull(bookRepository);
         }
@@ -67,25 +93,24 @@
         [TestMethod]
         public void GetAllBooks_ValidBookRepository_AllBooksReturned()
         {
-            IStoreSampleDataSource mockDataStore = mockSqlStoreSampleDataSource.Object;
-
-            IBookQueryRepository bookRepository = new SqlBookRepository(mockDataStore);
-
-            List<Book> actualBooks = bookRepository.GetAllBooks();
+            List<Book> actualBooks = this.bookQueryRepository.GetAllBooks();
 
             Assert.IsNotNull(actualBooks);
             Assert.AreEqual(expectedBooks.Count, actualBooks.Count);
             Assert.AreEqual(expectedBooks[0].IdBook, actualBooks[0].IdBook);
         }
 
-        [TestMethod]
-        public void GetBookById_ValidBookRepository_ExpectedBookReturned()
+        public void GetOrderById_NonExistantBookIdProvided_NullBookReturned()
         {
-            IStoreSampleDataSource mockDataStore = mockSqlStoreSampleDataSource.Object;
+            Book actualBook = this.bookQueryRepository.GetBookById(int.MaxValue);
 
-            IBookQueryRepository bookRepository = new SqlBookRepository(mockDataStore);
+            Assert.IsNull(actualBook);
+        }
 
-            Book actualBook = bookRepository.GetBookById(0);
+        [TestMethod]
+        public void GetBookById_ValidBookId_ExpectedBookReturned()
+        {
+            Book actualBook = this.bookQueryRepository.GetBookById(0);
 
             Assert.IsNotNull(actualBook);
             Assert.AreSame(expectedBooks[0], actualBook);
@@ -94,11 +119,7 @@
         [TestMethod]
         public void QueryBooks_NullBookSearchQuery_AllBooksReturned()
         {
-            IStoreSampleDataSource mockDataStore = mockSqlStoreSampleDataSource.Object;
-
-            IBookSearchRepository bookRepository = new SqlBookRepository(mockDataStore);
-
-            BookQueryResult actualBookQueryResult = bookRepository.QueryBooks(null);
+            BookQueryResult actualBookQueryResult = this.bookSearchRespository.QueryBooks(null);
 
             Assert.IsNotNull(actualBookQueryResult);
             Assert.AreEqual(expectedBooks.Count, actualBookQueryResult.TotalCount);
@@ -107,11 +128,12 @@
         [TestMethod]
         public void QueryBooks_EmptyBookSearchQuerySearchTerm_AllBooksReturned()
         {
-            IStoreSampleDataSource mockDataStore = mockSqlStoreSampleDataSource.Object;
+            BookSearchQuery bookQuery = new BookSearchQuery()
+            {
+                SearchTerm = string.Empty
+            };
 
-            IBookSearchRepository bookRepository = new SqlBookRepository(mockDataStore);
-
-            BookQueryResult actualBookQueryResult = bookRepository.QueryBooks(null);
+            BookQueryResult actualBookQueryResult = this.bookSearchRespository.QueryBooks(bookQuery);
 
             Assert.IsNotNull(actualBookQueryResult);
             Assert.AreEqual(expectedBooks.Count, actualBookQueryResult.TotalCount);
@@ -120,18 +142,14 @@
         [TestMethod]
         public void QueryBooks_AuthorSearch_ExpectedBookReturned()
         {
-            IStoreSampleDataSource mockDataStore = mockSqlStoreSampleDataSource.Object;
-
             mockDataStore.Books.Add(expectedBook);
-
-            IBookSearchRepository bookRepository = new SqlBookRepository(mockDataStore);
 
             BookSearchQuery bookQuery = new BookSearchQuery()
             {
                 SearchTerm = "X"
             };
 
-            BookQueryResult actualBookQueryResult = bookRepository.QueryBooks(bookQuery);
+            BookQueryResult actualBookQueryResult = this.bookSearchRespository.QueryBooks(bookQuery);
 
             Assert.IsNotNull(actualBookQueryResult);
             Assert.AreEqual(actualBookQueryResult.Result.Count, 1);
@@ -140,42 +158,34 @@
 
         public void QueryBooks_DescriptionSearch_ExpectedBookReturned()
         {
-            IStoreSampleDataSource mockDataStore = mockSqlStoreSampleDataSource.Object;
-
             mockDataStore.Books.Add(expectedBook);
-
-            IBookSearchRepository bookRepository = new SqlBookRepository(mockDataStore);
 
             BookSearchQuery bookQuery = new BookSearchQuery()
             {
                 SearchTerm = "Y"
             };
 
-            BookQueryResult actualBookQueryResult = bookRepository.QueryBooks(bookQuery);
+            BookQueryResult actualBookQueryResult = this.bookSearchRespository.QueryBooks(bookQuery);
 
             Assert.IsNotNull(actualBookQueryResult);
             Assert.AreEqual(actualBookQueryResult.Result.Count, 1);
-            Assert.AreEqual(expectedBook.Author, actualBookQueryResult.Result[0].Author);
+            Assert.AreEqual(expectedBook.Description, actualBookQueryResult.Result[0].Description);
         }
 
         public void QueryBooks_TitleSearch_ExpectedBookReturned()
         {
-            IStoreSampleDataSource mockDataStore = mockSqlStoreSampleDataSource.Object;
-
             mockDataStore.Books.Add(expectedBook);
-
-            IBookSearchRepository bookRepository = new SqlBookRepository(mockDataStore);
 
             BookSearchQuery bookQuery = new BookSearchQuery()
             {
                 SearchTerm = "Z"
             };
 
-            BookQueryResult actualBookQueryResult = bookRepository.QueryBooks(bookQuery);
+            BookQueryResult actualBookQueryResult = this.bookSearchRespository.QueryBooks(bookQuery);
 
             Assert.IsNotNull(actualBookQueryResult);
             Assert.AreEqual(actualBookQueryResult.Result.Count, 1);
-            Assert.AreEqual(expectedBook.Author, actualBookQueryResult.Result[0].Author);
+            Assert.AreEqual(expectedBook.Title, actualBookQueryResult.Result[0].Title);
         }
     }
 }

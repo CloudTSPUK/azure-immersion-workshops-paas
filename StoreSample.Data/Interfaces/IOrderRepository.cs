@@ -20,7 +20,7 @@ namespace StoreSample.Data.Interfaces
         /// </summary>
         /// <returns>Always returns a list of orders, however that list can be empty, if no 
         /// orders exist in the system. The result is never null.</returns>
-        IList<Order> GetOrders();
+        List<Order> GetAllOrders();
         
         /// <summary>
         /// Adds an order to the system. 
