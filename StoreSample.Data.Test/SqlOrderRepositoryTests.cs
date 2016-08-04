@@ -6,7 +6,9 @@
     using Moq;
     using System.Collections.Generic;
     using Repositories;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class SqlOrderRepositoryTests
     {

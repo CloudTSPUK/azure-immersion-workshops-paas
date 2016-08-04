@@ -12,7 +12,9 @@ namespace StoreSample.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
     public partial class StoreSampleDbContext : DbContext
     {
         public StoreSampleDbContext()

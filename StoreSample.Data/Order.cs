@@ -11,7 +11,9 @@ namespace StoreSample.Data
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
     public partial class Order
     {
         public int IdOrder { get; set; }

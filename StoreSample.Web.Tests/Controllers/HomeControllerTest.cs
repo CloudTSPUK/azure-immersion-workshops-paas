@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StoreSample.Web;
 using StoreSample.Web.Controllers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace StoreSample.Web.Tests.Controllers
 {
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class HomeControllerTest
     {

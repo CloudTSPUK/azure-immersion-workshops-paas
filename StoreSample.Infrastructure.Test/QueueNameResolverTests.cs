@@ -3,7 +3,9 @@
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Microsoft.Azure.WebJobs;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class QueueNameResolverTests
     {

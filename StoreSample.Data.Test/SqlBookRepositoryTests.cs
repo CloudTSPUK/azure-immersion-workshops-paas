@@ -6,7 +6,9 @@
     using Moq;
     using Interfaces;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class SqlBookRepositoryTests
     {
