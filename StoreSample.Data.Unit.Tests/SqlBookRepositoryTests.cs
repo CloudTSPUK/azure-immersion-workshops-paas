@@ -14,7 +14,7 @@
     {
         private static Mock<IStoreSampleDataSource> mockSqlStoreSampleDataSource;
         private static List<Book> expectedBooks = new List<Book>();
-        private static Book expectedBook;
+        private static Book expectedBookToQuery;
 
         private IStoreSampleDataSource mockDataStore;
         private IBookQueryRepository bookQueryRepository;
@@ -40,9 +40,7 @@
                 });
             }
 
-            mockSqlStoreSampleDataSource.Setup(sssds => sssds.Books).Returns(expectedBooks);
-
-            expectedBook = new Book()
+            expectedBookToQuery = new Book()
             {
                 Author = "X",
                 Description = "Y",
@@ -51,6 +49,10 @@
                 IdBook = 4,
                 Orders = null
             };
+
+            expectedBooks.Add(expectedBookToQuery);
+
+            mockSqlStoreSampleDataSource.Setup(sssds => sssds.Books).Returns(expectedBooks);
         }
 
         [TestInitialize]
@@ -144,8 +146,6 @@
         [TestMethod]
         public void QueryBooks_AuthorSearch_ExpectedBookReturned()
         {
-            mockDataStore.Books.Add(expectedBook);
-
             BookSearchQuery bookQuery = new BookSearchQuery()
             {
                 SearchTerm = "X"
@@ -155,14 +155,12 @@
 
             Assert.IsNotNull(actualBookQueryResult);
             Assert.AreEqual(1, actualBookQueryResult.Result.Count);
-            Assert.AreEqual(expectedBook.Author, actualBookQueryResult.Result[0].Author);
+            Assert.AreEqual(expectedBookToQuery.Author, actualBookQueryResult.Result[0].Author);
         }
 
         [TestMethod]
         public void QueryBooks_DescriptionSearch_ExpectedBookReturned()
         {
-            mockDataStore.Books.Add(expectedBook);
-
             BookSearchQuery bookQuery = new BookSearchQuery()
             {
                 SearchTerm = "Y"
@@ -172,14 +170,12 @@
 
             Assert.IsNotNull(actualBookQueryResult);
             Assert.AreEqual(1, actualBookQueryResult.Result.Count);
-            Assert.AreEqual(expectedBook.Description, actualBookQueryResult.Result[0].Description);
+            Assert.AreEqual(expectedBookToQuery.Description, actualBookQueryResult.Result[0].Description);
         }
 
         [TestMethod]
         public void QueryBooks_TitleSearch_ExpectedBookReturned()
         {
-            mockDataStore.Books.Add(expectedBook);
-
             BookSearchQuery bookQuery = new BookSearchQuery()
             {
                 SearchTerm = "Z"
@@ -189,7 +185,7 @@
 
             Assert.IsNotNull(actualBookQueryResult);
             Assert.AreEqual(1, actualBookQueryResult.Result.Count);
-            Assert.AreEqual(expectedBook.Title, actualBookQueryResult.Result[0].Title);
+            Assert.AreEqual(expectedBookToQuery.Title, actualBookQueryResult.Result[0].Title);
         }
     }
 }
