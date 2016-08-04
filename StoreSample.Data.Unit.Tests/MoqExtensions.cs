@@ -1,4 +1,4 @@
-﻿namespace StoreSample.Data.Test
+﻿namespace StoreSample.Data.Unit.Tests
 {
     using Moq.Language.Flow;
     using System.Collections.Generic;

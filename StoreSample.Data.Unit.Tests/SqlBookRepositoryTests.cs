@@ -1,4 +1,4 @@
-﻿namespace StoreSample.Data.Test
+﻿namespace StoreSample.Data.Unit.Tests
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -154,7 +154,7 @@
             BookQueryResult actualBookQueryResult = this.bookSearchRespository.QueryBooks(bookQuery);
 
             Assert.IsNotNull(actualBookQueryResult);
-            Assert.AreEqual(actualBookQueryResult.Result.Count, 1);
+            Assert.AreEqual(1, actualBookQueryResult.Result.Count);
             Assert.AreEqual(expectedBook.Author, actualBookQueryResult.Result[0].Author);
         }
 
@@ -171,7 +171,7 @@
             BookQueryResult actualBookQueryResult = this.bookSearchRespository.QueryBooks(bookQuery);
 
             Assert.IsNotNull(actualBookQueryResult);
-            Assert.AreEqual(actualBookQueryResult.Result.Count, 1);
+            Assert.AreEqual(1, actualBookQueryResult.Result.Count);
             Assert.AreEqual(expectedBook.Description, actualBookQueryResult.Result[0].Description);
         }
 
@@ -188,7 +188,7 @@
             BookQueryResult actualBookQueryResult = this.bookSearchRespository.QueryBooks(bookQuery);
 
             Assert.IsNotNull(actualBookQueryResult);
-            Assert.AreEqual(actualBookQueryResult.Result.Count, 1);
+            Assert.AreEqual(1, actualBookQueryResult.Result.Count);
             Assert.AreEqual(expectedBook.Title, actualBookQueryResult.Result[0].Title);
         }
     }

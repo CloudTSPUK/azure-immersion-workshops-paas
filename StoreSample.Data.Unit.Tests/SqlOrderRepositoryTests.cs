@@ -1,4 +1,4 @@
-﻿namespace StoreSample.Data.Test
+﻿namespace StoreSample.Data.Unit.Tests
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

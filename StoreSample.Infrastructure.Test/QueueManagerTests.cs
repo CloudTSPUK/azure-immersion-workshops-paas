@@ -1,4 +1,4 @@
-﻿namespace StoreSample.Infrastructure.Test
+﻿namespace StoreSample.Infrastructure.Unit.Tests
 {
     using Data;
     using Microsoft.Azure;
