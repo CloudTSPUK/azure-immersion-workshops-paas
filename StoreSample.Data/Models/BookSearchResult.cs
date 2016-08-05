@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
-
-namespace StoreSample.Data
+﻿namespace StoreSample.Data
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// Represents the result of a search query. This construct can (and will)
     /// contain more than just a simple result list. It will also have information
     /// about the total count of items, the count in this page, etc.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class BookQueryResult
     {
         public BookQueryResult()
