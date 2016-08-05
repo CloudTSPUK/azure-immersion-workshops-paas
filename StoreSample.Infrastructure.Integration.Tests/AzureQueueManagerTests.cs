@@ -9,7 +9,7 @@
     using System;
 
     [TestClass]
-    public class QueueManagerTests
+    public class AzureQueueManagerTests
     {
         private static CloudQueueClient queueClient;
 
@@ -57,7 +57,7 @@
         [TestMethod]
         public void Constructor_CorrectParameters_ValidQueueManagerCreated()
         {
-            QueueManager queueManager = new QueueManager(this.storageConnectionSetting, this.targetQueueSetting);
+            AzureQueueManager queueManager = new AzureQueueManager(this.storageConnectionSetting, this.targetQueueSetting);
 
             Assert.IsNotNull(queueManager);
         }
@@ -67,7 +67,7 @@
         {
             string expectedQueueName = "orders";
 
-            QueueManager queueManager = new QueueManager(this.storageConnectionSetting, this.targetQueueSetting);
+            AzureQueueManager queueManager = new AzureQueueManager(this.storageConnectionSetting, this.targetQueueSetting);
 
             bool success = queueManager.CreateQueue();
 
@@ -107,7 +107,7 @@
                 TotalPrice = 1
             };
 
-            QueueManager queueManager = new QueueManager(this.storageConnectionSetting, this.targetQueueSetting);
+            AzureQueueManager queueManager = new AzureQueueManager(this.storageConnectionSetting, this.targetQueueSetting);
 
             queueManager.CreateQueue();
 

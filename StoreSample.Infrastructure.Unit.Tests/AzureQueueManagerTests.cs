@@ -9,7 +9,7 @@
 
     [ExcludeFromCodeCoverage]
     [TestClass]
-    public class QueueManagerTests
+    public class AzureQueueManagerTests
     {
         private string storageConnectionSetting = "AzureStorageAccountConnection";
         private string targetQueueSetting = "TargetQueue";
@@ -20,7 +20,7 @@
         {
             string storageConnectionSetting = string.Empty;
 
-            QueueManager queueManager = new QueueManager(storageConnectionSetting, this.targetQueueSetting);
+            AzureQueueManager queueManager = new AzureQueueManager(storageConnectionSetting, this.targetQueueSetting);
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@
         {
             string storageConnectionSetting = "connection";
 
-            QueueManager queueManager = new QueueManager(storageConnectionSetting, this.targetQueueSetting);
+            AzureQueueManager queueManager = new AzureQueueManager(storageConnectionSetting, this.targetQueueSetting);
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@
         {
             string targetQueueSetting = string.Empty;
 
-            QueueManager queueManager = new QueueManager(this.storageConnectionSetting, targetQueueSetting);
+            AzureQueueManager queueManager = new AzureQueueManager(this.storageConnectionSetting, targetQueueSetting);
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@
         {
             string targetQueueSetting = "queue";
 
-            QueueManager queueManager = new QueueManager(this.storageConnectionSetting, targetQueueSetting);
+            AzureQueueManager queueManager = new AzureQueueManager(this.storageConnectionSetting, targetQueueSetting);
         }  
     }
 }

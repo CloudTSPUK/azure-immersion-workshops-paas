@@ -7,14 +7,14 @@
     using Newtonsoft.Json;
     using System;
 
-    public class QueueManager : IQueueManager
+    public class AzureQueueManager : IQueueManager
     {
         private CloudStorageAccount cloudStorageAccount;
         private string targetQueueName;
 
         private CloudQueue azureQueue;
 
-        public QueueManager(string storageConnectionSetting, string targetQueueSetting)
+        public AzureQueueManager(string storageConnectionSetting, string targetQueueSetting)
         {
             Guard.NotNullOrEmpty(storageConnectionSetting, "The storage connection setting was null. Cannot identify which cloud storage account to use.");
 
