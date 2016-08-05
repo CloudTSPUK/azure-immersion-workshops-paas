@@ -28,8 +28,20 @@
             sqlBookRepository = new SqlBookRepository(sqlStoreSampleDataSource);
         }
 
+        [ClassCleanup()]
+        public static void ClassCleanup()
+        {
+            sqlBookRepository = null;
+        }
+
         [TestMethod]
-        public void GetAllBooks_SqlEntityFrameworkBookRepository_AllSeedBooksReturned()
+        public void Constuctor_ValidSqlDbContext_InstanceReturned()
+        {
+            Assert.IsNotNull(sqlBookRepository);
+        }
+
+        [TestMethod]
+        public void GetAllBooks_BookRepositoryCanRetrieveDbBooks_AllSeedBooksReturned()
         {
             List<Book> actualSeedBooks = sqlBookRepository.GetAllBooks();
 
@@ -38,7 +50,7 @@
         }
 
         [TestMethod]
-        public void GetBookById_SeedBookId_SeedBookReturned()
+        public void GetBookById_SeedBookIdPresentInDb_SeedBookReturned()
         {
             Book actualSeedBook = sqlBookRepository.GetBookById(expectedSeedBookId);
 
@@ -47,7 +59,7 @@
         }
 
         [TestMethod]
-        public void QueryBooks_AuthorSearch_SeedBookReturned()
+        public void QueryBooks_AuthorSearchBookPresentInDB_SeedBookReturned()
         {
             BookSearchQuery bookSearchQuery = new BookSearchQuery()
             {
@@ -63,7 +75,7 @@
         }
 
         [TestMethod]
-        public void QueryBooks_TitleSearch_SeedBookReturned()
+        public void QueryBooks_TitleSearchBookPresentInDB_SeedBookReturned()
         {
             BookSearchQuery bookSearchQuery = new BookSearchQuery()
             {
@@ -79,7 +91,7 @@
         }
 
         [TestMethod]
-        public void QueryBooks_KeyWordSearch_SeedBooksReturned()
+        public void QueryBooks_KeyWordSearchBooksPresentInDB_SeedBooksReturned()
         {
             BookSearchQuery bookSearchQuery = new BookSearchQuery()
             {

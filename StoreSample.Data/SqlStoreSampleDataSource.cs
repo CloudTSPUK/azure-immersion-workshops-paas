@@ -11,8 +11,8 @@
     /// </summary>
     public class SqlStoreSampleDataSource : IStoreSampleDataSource
     {
-        private IList<Book> books;
-        private IList<Order> orders;
+        private List<Book> books;
+        private List<Order> orders;
 
         StoreSampleDbContext storeSampleDbContext;
 
@@ -21,7 +21,7 @@
             this.storeSampleDbContext = new StoreSampleDbContext();
         }
 
-        public IList<Book> Books
+        public List<Book> Books
         {
             get
             {
@@ -30,13 +30,13 @@
                 return this.books;
             }
 
-            set
+            private set
             {
                 this.books = value;
             }
         }
 
-        public IList<Order> Orders
+        public List<Order> Orders
         {
             get
             {
@@ -45,7 +45,7 @@
                 return this.orders;
             }
 
-            set
+            private set
             {
                 this.orders = value;
             }

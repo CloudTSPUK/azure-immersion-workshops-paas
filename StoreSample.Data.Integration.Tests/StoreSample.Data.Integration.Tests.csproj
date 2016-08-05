@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlBookRepositoryTests.cs" />
+    <Compile Include="SqlOrderRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoreSample.Data\StoreSample.Data.csproj">

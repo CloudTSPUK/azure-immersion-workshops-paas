@@ -10,12 +10,12 @@
         /// <summary>
         /// A list of the current Books as retrieved from the target Store Sample datasource.
         /// </summary>
-        IList<Book> Books { get; set; }
+        List<Book> Books { get; }
 
         /// <summary>
         /// A list of the current Orders as retrieved from the target Store Sample datasource.
         /// </summary>
-        IList<Order> Orders { get; set; }
+        List<Order> Orders { get; }
 
         /// <summary>
         /// Adds an order to the target Store Sample datasource.It is important to note that the order to be

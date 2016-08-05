@@ -25,7 +25,7 @@
         {
             CheckSqlDataSource();
 
-            return this.sqlStoreSampleDataSource.Orders.ToList();
+            return this.sqlStoreSampleDataSource.Orders;
         }
 
         public Order GetOrderById(int orderId)
