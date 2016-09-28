@@ -14,12 +14,11 @@
             <div class="container">
                 <div class="row">
 
-                    <h1 class="brand pull-left">StoreSample</h1>
+                    <a href="@Url.Action("Index", "Home")"><h1 class="brand pull-left">StoreSample</h1></a>
 
                     <ul class="navigation pull-right">
                         <li class="selected">Home</li>
-                        <li>About us</li>
-                        <li>Contact us</li>
+                        <li><a href="https://github.com/MSMTCUK/azure-immersion-workshops-paas/" target="_blank">GitHub Project</a></li>
                     </ul>
                 </div>
             </div>
@@ -27,12 +26,20 @@
     </header>
     <header class="search">
         <div class="container">
-            <div class="row center-block">
-                <div class="col-md-11">
-                    <input type="text" class="form-control pull-right" id="searchQuery" />
-                </div>
-                <div class="col-md-1">
-                    <button class="btn btn-search pull-left" type="submit"><i class="glyphicon glyphicon-search"></i> Find books</button>
+            <div class="row">
+                <div class="col-md-12 search-row">
+                    <div class="row">
+                        @using (var f = Html.BeginForm("Index", "Home", FormMethod.Get))
+                        {
+                            <div class="col-md-11">
+                                <i class="glyphicon glyphicon-search"></i>
+                                <input type="text" class="form-control pull-right" id="query" name="query" value="@ViewBag.Query" placeholder="Enter search text..." autocomplete="off"/>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-search pull-right" type="submit">Find a book</button>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,7 +49,7 @@
         @RenderBody()
 
         <footer>
-            <p>&copy; @DateTime.Now.Year - MS MTC UK Team</p>
+            <p>&copy; @DateTime.Now.Year - MS MTC UK Team, running on <strong>@Environment.MachineName</strong></p>
         </footer>
     </div>
 
