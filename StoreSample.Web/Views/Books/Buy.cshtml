@@ -1,0 +1,97 @@
+﻿@model StoreSample.Web.Models.BookPurchaseViewModel
+
+@{
+    ViewBag.Title = "Buy " + Model.Book.Title;
+}
+
+<div class="container">
+    <div class="row back-link">
+        <div class="col-md-12">
+            <a href="@Url.Action("Index", "Home")"><i class="glyphicon-backward glyphicon"></i> Back to list of books</a>
+        </div>
+    </div>
+    <div class="row book-row">
+        <div class="col-md-4">
+            <figure class="product-image-box">
+                <img width="250" height="333" src="http://demo.toko.press/bookie2/standard/wp-content/uploads/2016/06/book-23-250x333.jpg"
+                     alt="book-23" title="book-23">
+            </figure>
+        </div>
+        <div class="col-md-8">
+            <h2>@Model.Book.Title</h2>
+            <h3 class="author">@Model.Book.Author</h3>
+
+            <div class="row">
+                <div class="col-md-3 form">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Quantity)
+                        @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", type = "number" })
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Price</label>
+                        <span class="price">x @Model.Book.Price.ToString("c")</span>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+
+
+            <br />
+
+            @using (var f = Html.BeginForm())
+            {
+                @Html.HiddenFor(x => x.Book.IdBook)
+
+                @* NOTE: this is not production safe, do not EVER do this in production, as it exposes you to modification on the client side! *@
+                @Html.HiddenFor(x => x.Book.Price)
+                <div class="form-group">
+                    @Html.LabelFor(x => x.FirstName)
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", placeholder = "John" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.LastName)
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = "Smith" })
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.PostCode)
+                            @Html.TextBoxFor(x => x.PostCode, new { @class = "form-control", placeholder = "RG1 00" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.HouseNumber)
+                            @Html.TextBoxFor(x => x.HouseNumber, new { @class = "form-control", placeholder = "5" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Email)
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "john.smith@youremailprovider.com" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.TelephoneNumber)
+                    @Html.TextBoxFor(x => x.TelephoneNumber, new { @class = "form-control", placeholder = "07889 999 999" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(x => x.CreditCardNumber)
+                    @Html.TextBoxFor(x => x.CreditCardNumber, new { @class = "form-control", @readonly = true })
+                </div>
+
+                <button type="submit" class="btn btn-success" name="Submit Order!">Submit Order!</button>
+            }
+
+
+        </div>
+
+    </div>
+</div>
