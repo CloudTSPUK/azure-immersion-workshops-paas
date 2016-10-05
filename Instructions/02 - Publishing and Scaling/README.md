@@ -52,4 +52,43 @@ The steps here assume that you are logged into an account that has an Azure subs
 
 ## Scaling the application
 
-Coming soon...
+In this section, we'll explore how to easily scale the application. As we attempt to scale, we will run into an _issue_. That issue is that the free plan (for obvious reasons), does not allow you to scale the application out. That means that we will also migrate the _App Service Plan_ to a higher plan that will enable us to scale properly.
+
+1. Start by logging into the [Azure Portal](https://portal.azure.com).
+2. You should see a list of types of services in the left hand menu. Select `App Services` from the menu, as shown in the image below. 
+    
+    <img src="assets/azure_portal_01.png" width="600px" />
+
+    > If you cannot see the item in the menu, click the `More Services >` menu item and type `App Services` in the search box. 
+
+3. Once you open the App Services Pane, select your deployment (we've named it `StoreSample-<yourname>`). You'll see the corresponding pane show up, along with a list of options for you. 
+
+    <img src="assets/azure_portal_02.png" width="600px" />
+
+4. Find and click on `Scale Up` as the first thing we need to do is increase the _App Service Plan_ we are using. Select the *Basic* plan, and `Save`.
+
+    <img src="assets/azure_portal_03.png" width="600px" />
+
+    You will see a notification pop-up when that operation is complete.
+
+    <img src="assets/azure_portal_04.png"/>
+
+5. Now, in the same list of operations in the pane corresponding to your app, find `Scale Out`. 
+
+    <img src="assets/azure_portal_05.png"/>
+
+    > Multiple scale-out scenarios are supported for Web Apps, namely _manual_ and _automatic_. However, the automatic (called Auto Scale) scaling is only supported in higher pricing plans. 
+
+6. Drag the counter to the right, and select 3 instances and click `Save` in the toolbar above. 
+
+    <img src="assets/azure_portal_06.png"/>
+
+7. Once that is complete, you should again see a notification in the upper right corner. The operation usually doesn't take long, so it should be fairly quick. 
+
+    <img src="assets/azure_portal_07.png"/>
+
+8. Once done, open your application through the URL towards it was published. You _should_ be able to force the load balancer to switch between multiple nodes by holding down F5. You will see something like the following image.
+
+    <img src="assets/hostnames.png"/>
+
+> Note that the load-balancer in use here, is fairly smart - it will maintain a list of incoming connections and try to maintain a fairly sticky session. To get around this, you might want to work with your neighboor in the course, to open their URL, and compare the hostname you are getting towards what they are getting. 
