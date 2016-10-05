@@ -75,13 +75,13 @@ In this section, we'll explore how to easily scale the application. As we attemp
 
 5. Now, in the same list of operations in the pane corresponding to your app, find `Scale Out`. 
 
-    <img src="assets/azure_portal_05.png"/>
+    <img src="assets/azure_portal_05.png" width="600px"/>
 
     > Multiple scale-out scenarios are supported for Web Apps, namely _manual_ and _automatic_. However, the automatic (called Auto Scale) scaling is only supported in higher pricing plans. 
 
 6. Drag the counter to the right, and select 3 instances and click `Save` in the toolbar above. 
 
-    <img src="assets/azure_portal_06.png"/>
+    <img src="assets/azure_portal_06.png" width="600px"/>
 
 7. Once that is complete, you should again see a notification in the upper right corner. The operation usually doesn't take long, so it should be fairly quick. 
 
