@@ -13,7 +13,7 @@
                     <div class="product-inner">
                         <a href="@Url.Action("Details", "Books", new { Id = book.IdBook })" class="product-link">
                             <figure class="product-image-box">
-                                <img width="250" src="@Url.Content(String.Format("~/Content/images/covers/{0}.png", book.IdBook))"
+                                <img width="250" src="@book.GetCoverUrl()"
                                      alt="book-23" title="book-23">
                             </figure>
                             <div>
