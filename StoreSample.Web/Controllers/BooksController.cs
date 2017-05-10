@@ -1,6 +1,7 @@
 ﻿using StoreSample.Web.Data;
 using StoreSample.Web.Models;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace StoreSample.Web.Controllers
@@ -18,16 +19,11 @@ namespace StoreSample.Web.Controllers
         /// <returns>Returns a <see cref="Book"/> object, if found, or null if not.</returns>
         private Book GetBookFromStore(int id)
         {
-            var book = new Book()
+            using (var ctx = new Entities())
             {
-                Author = "R. Andom",
-                Title = "A Short Road To Longevity",
-                Price = 15m,
-                Description = "A very nice book about a way to go quick, slowly.",
-                IdBook = 1
-            };
-
-            return book;
+                var book = ctx.Books.Single(x => x.IdBook == id);
+                return book;
+            }
         }
 
         /// <summary>
