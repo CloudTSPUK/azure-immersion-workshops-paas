@@ -1,5 +1,6 @@
 ﻿using StoreSample.Web.Data;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace StoreSample.Web.Controllers
@@ -16,22 +17,18 @@ namespace StoreSample.Web.Controllers
             // generate the model
             var books = new List<Book>();
 
-            for (int i = 0; i < 20; i++)
+            using (var store = new StoreSample.Web.Data.Entities())
             {
-                books.Add(new Book()
-                {
-                    Author = "An. Author",
-                    Title = "The Long Road to Ruin",
-                    Price = 15m,
-                    Description = "A very nice book about a winding path of a young developer, who liked to play the guitar.",
-                    IdBook = 1
-                });
-            }
 
-            if(!string.IsNullOrEmpty(query))
-            {
-                ViewBag.Query = query;
-                books = books.GetRange(0, 5);
+                var results = store.Books.AsQueryable();
+
+                if (!string.IsNullOrEmpty(query))
+                {
+                    var lQuery = query.ToLower();
+                    results = results.Where(x => x.Title.ToLower().Contains(lQuery) || x.Description.ToLower().Contains(lQuery));
+                }
+
+                books = results.ToList();
             }
 
             return View(books);

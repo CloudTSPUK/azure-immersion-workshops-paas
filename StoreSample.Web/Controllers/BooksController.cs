@@ -1,6 +1,11 @@
-﻿using StoreSample.Web.Data;
+﻿using Microsoft.Azure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Newtonsoft.Json;
+using StoreSample.Web.Data;
 using StoreSample.Web.Models;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace StoreSample.Web.Controllers
@@ -18,16 +23,11 @@ namespace StoreSample.Web.Controllers
         /// <returns>Returns a <see cref="Book"/> object, if found, or null if not.</returns>
         private Book GetBookFromStore(int id)
         {
-            var book = new Book()
+            using (var ctx = new Entities())
             {
-                Author = "R. Andom",
-                Title = "A Short Road To Longevity",
-                Price = 15m,
-                Description = "A very nice book about a way to go quick, slowly.",
-                IdBook = 1
-            };
-
-            return book;
+                var book = ctx.Books.Single(x => x.IdBook == id);
+                return book;
+            }
         }
 
         /// <summary>
@@ -85,7 +85,24 @@ namespace StoreSample.Web.Controllers
                 OrderPlacedAtUtc = DateTime.UtcNow
             };
 
-            // TODO: submit to queue
+            // Retrieve storage account from connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            // Create the queue client.
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+
+            // Retrieve a reference to a queue.
+            CloudQueue buyBookQueue = queueClient.GetQueueReference("BuyBookQueue");
+
+            // Create the queue if it doesn't already exist.
+            buyBookQueue.CreateIfNotExists();
+
+            string orderJson = JsonConvert.SerializeObject(order);
+
+            // Create a message and add it to the queue.
+            CloudQueueMessage message = new CloudQueueMessage(orderJson);
+
+            buyBookQueue.AddMessage(message);
 
             return RedirectToAction("Index", "Home");
         }
