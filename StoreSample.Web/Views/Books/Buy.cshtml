@@ -21,27 +21,28 @@
             <h2>@Model.Book.Title</h2>
             <h3 class="author">@Model.Book.Author</h3>
 
-            <div class="row">
-                <div class="col-md-3 form">
-                    <div class="form-group">
-                        @Html.LabelFor(x => x.Quantity)
-                        @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", type = "number" })
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label>Price</label>
-                        <span class="price">x @Model.Book.Price.ToString("c")</span>
-                    </div>
-                </div>
-                <div class="col-md-4"></div>
-            </div>
-
-
-            <br />
-
             @using (var f = Html.BeginForm())
+
             {
+                <div class="row">
+                    <div class="col-md-3 form">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Quantity)
+                            @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control", type = "number" })
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Price</label>
+                            <span class="price">x @Model.Book.Price.ToString("c")</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+
+                <br />
+
                 @Html.HiddenFor(x => x.Book.IdBook)
 
                 @* NOTE: this is not production safe, do not EVER do this in production, as it exposes you to modification on the client side! *@
