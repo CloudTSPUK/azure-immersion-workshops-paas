@@ -1,4 +1,8 @@
-﻿using StoreSample.Web.Data;
+﻿using Microsoft.Azure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Newtonsoft.Json;
+using StoreSample.Web.Data;
 using StoreSample.Web.Models;
 using System;
 using System.Web.Mvc;
@@ -85,7 +89,24 @@ namespace StoreSample.Web.Controllers
                 OrderPlacedAtUtc = DateTime.UtcNow
             };
 
-            // TODO: submit to queue
+            // Retrieve storage account from connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            // Create the queue client.
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+
+            // Retrieve a reference to a queue.
+            CloudQueue buyBookQueue = queueClient.GetQueueReference("BuyBookQueue");
+
+            // Create the queue if it doesn't already exist.
+            buyBookQueue.CreateIfNotExists();
+
+            string orderJson = JsonConvert.SerializeObject(order);
+
+            // Create a message and add it to the queue.
+            CloudQueueMessage message = new CloudQueueMessage(orderJson);
+
+            buyBookQueue.AddMessage(message);
 
             return RedirectToAction("Index", "Home");
         }
