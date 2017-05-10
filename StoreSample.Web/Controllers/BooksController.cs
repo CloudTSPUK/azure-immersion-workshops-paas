@@ -13,36 +13,17 @@ namespace StoreSample.Web.Controllers
     public class BooksController : Controller
     {
         /// <summary>
-        /// The methods gets the book by id from the data store.
-        /// </summary>
-        /// <remarks>This method only exists because both methods in the controller
-        /// actually need the same one. Typically, this could have been done by introducing
-        /// a service class, but because we wanted to minimize the complexity of the application,
-        /// this will do just fine.</remarks>
-        /// <param name="id">The id of the book to retrieve.</param>
-        /// <returns>Returns a <see cref="Book"/> object, if found, or null if not.</returns>
-        private Book GetBookFromStore(int id)
-        {
-            using (var ctx = new Entities())
-            {
-                var book = ctx.Books.Single(x => x.IdBook == id);
-                return book;
-            }
-        }
-
-        /// <summary>
         /// The action reaches out to the database, to get the proper book, 
         /// and pass the model to the view.
         /// </summary>
-        /// <param name="id">The id of the book to show.</param>
+        /// <param name="Id">The id of the book to show.</param>
         /// <returns>Returns a view result, with the model of the book.</returns>
-        public ActionResult Details(int id)
+        public ActionResult Details(int Id)
         {
-            var book = GetBookFromStore(id);
+            var book = GetBookFromStoreSampleDatabase(Id);
+
             return View(book);
         }
-
-
 
         [HttpGet]
         public ActionResult Buy(int id)
@@ -50,7 +31,8 @@ namespace StoreSample.Web.Controllers
             // NOTE: since we are pretty certain the user came to this page from the Details
             //       action, we know this could be greatly improved by caching the book. But
             //       that is premature optimization. 
-            var book = GetBookFromStore(id);
+            var book = GetBookFromStoreSampleDatabase(id);
+
             var model = new BookPurchaseViewModel()
             {
                 Quantity = 1, // we obviously default to one 
@@ -63,7 +45,7 @@ namespace StoreSample.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Buy(BookPurchaseViewModel model)
+        public ActionResult Buy(BookPurchaseViewModel bookModel)
         {
             // we should be doing validation, and making sure that 
             // the data is properly entered. But seeing as this is a 
@@ -72,16 +54,16 @@ namespace StoreSample.Web.Controllers
 
             var order = new Order()
             {
-                BookId = model.Book.IdBook,
-                CreditCardNumber = model.CreditCardNumber,
-                Email = model.Email,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                HouseNumber = model.HouseNumber,
-                PostCode = model.PostCode,
-                Quantity = model.Quantity,
-                TotalPrice = model.Quantity * model.Book.Price,
-                TelephoneNumber = model.TelephoneNumber,
+                BookId = bookModel.Book.IdBook,
+                CreditCardNumber = bookModel.CreditCardNumber,
+                Email = bookModel.Email,
+                FirstName = bookModel.FirstName,
+                LastName = bookModel.LastName,
+                HouseNumber = bookModel.HouseNumber,
+                PostCode = bookModel.PostCode,
+                Quantity = bookModel.Quantity,
+                TotalPrice = bookModel.Quantity * bookModel.Book.Price,
+                TelephoneNumber = bookModel.TelephoneNumber,
                 OrderPlacedAtUtc = DateTime.UtcNow
             };
 
@@ -105,6 +87,25 @@ namespace StoreSample.Web.Controllers
             buyBookQueue.AddMessage(message);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        /// <summary>
+        /// The methods gets the book by id from the data store.
+        /// </summary>
+        /// <remarks>This method only exists because both methods in the controller
+        /// actually need the same one. Typically, this could have been done by introducing
+        /// a service class, but because we wanted to minimize the complexity of the application,
+        /// this will do just fine.</remarks>
+        /// <param name="bookId">The id of the book to retrieve.</param>
+        /// <returns>Returns a <see cref="Book"/> object, if found, or null if not.</returns>
+        private Book GetBookFromStoreSampleDatabase(int bookId)
+        {
+            using (var storeSampleBookDatabase = new Entities())
+            {
+                var targetBook = storeSampleBookDatabase.Books.Single(book => book .IdBook == bookId);
+
+                return targetBook;
+            }
         }
     }
 }
