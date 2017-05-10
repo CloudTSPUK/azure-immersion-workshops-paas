@@ -1,8 +1,5 @@
-﻿using StoreSample.Data;
-using System;
+﻿using StoreSample.Web.Data;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StoreSample.Web.Controllers

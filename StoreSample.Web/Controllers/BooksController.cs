@@ -1,4 +1,4 @@
-﻿using StoreSample.Data;
+﻿using StoreSample.Web.Data;
 using StoreSample.Web.Models;
 using System;
 using System.Web.Mvc;
