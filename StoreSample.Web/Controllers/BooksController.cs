@@ -92,7 +92,7 @@ namespace StoreSample.Web.Controllers
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
             // Retrieve a reference to a queue.
-            CloudQueue buyBookQueue = queueClient.GetQueueReference("BuyBookQueue");
+            CloudQueue buyBookQueue = queueClient.GetQueueReference("buybookqueue");
 
             // Create the queue if it doesn't already exist.
             buyBookQueue.CreateIfNotExists();
