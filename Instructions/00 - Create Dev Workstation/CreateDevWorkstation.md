@@ -1,6 +1,7 @@
-#Create a “Dev Workstation” on “CorpNet”…
+# Create a “Dev Workstation” on “CorpNet”…
 
 The first job is to create a *clean, virgin* Dev Workstation. Once this lab is complete, you don’t even need Visual Studio installed on your local workstation.
+
 1.	Go to the Azure portal – http://portal.azure.com and log in using your Azure subscription credentials.
 2.	Click More Services|Virtual machines then click Add.
 3.	In the search filter type “Visual Studio 2015” and hit return.
