@@ -1,9 +1,5 @@
 ﻿using StoreSample.Web.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace StoreSample.Web.Models
 {
@@ -16,8 +12,9 @@ namespace StoreSample.Web.Models
         /// <returns></returns>
         public static string GetCoverUrl(this Book book)
         {
-            var u = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            return u.Content(String.Format("~/Content/images/covers/{0}.png", book.IdBook));
+            //var u = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            //return u.Content(String.Format("~/Content/images/covers/{0}.png", book.IdBook));
+            return String.Format("https://storesamplestorage.blob.core.windows.net/books/{0}.png", book.IdBook);
         }
     }
 }
