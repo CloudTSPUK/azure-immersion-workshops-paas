@@ -7,7 +7,7 @@ namespace StoreSample.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string bookSearchQuery = null)
+        public ActionResult Index(string query = null)
         {
             // this is where we'll go the DB
             // generate the model
@@ -17,11 +17,11 @@ namespace StoreSample.Web.Controllers
             {
                 var bookResults = storeSampleDatabase.Books.AsQueryable();
 
-                if (!string.IsNullOrEmpty(bookSearchQuery))
+                if (!string.IsNullOrEmpty(query))
                 {
-                    var lowerCaseQuery = bookSearchQuery.ToLower();
+                    var lowerCaseQuery = query.ToLower();
 
-                    bookResults = bookResults.Where(book => book.Title.ToLower().Contains(lowerCaseQuery) || book.Description.ToLower().Contains(lowerCaseQuery));
+                    bookResults = bookResults.Where(book => book.Title.ToLower().Contains(lowerCaseQuery));
                 }
 
                 books = bookResults.ToList();
