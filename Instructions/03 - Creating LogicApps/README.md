@@ -14,3 +14,26 @@ The steps here assume that you are logged into an account that has an Azure subs
 
 2. *Enter* ```Logic Apps``` in the ```search marketplace``` text box and *hit*  ```Enter key```  to search.  
 <img src="assets/Creating Logic Apps - Step 2 Search Logic App.PNG" width="500px"/>
+
+3. *Select*  ```Logic Apps``` from the search results and *Click* ```Create``` button in the Logic App Blade.
+<img src="assets/Creating Logic Apps - Step 3 Click Create Button.PNG" width="500px"/>
+
+4. *Enter* Name ```StoreSimple_LA``` and selection Location as ```North Europe``` and *click* Create.
+<img src="assets/Creating Logic Apps - Step 4 Enter Parameters and Click Create.PNG" width="500px" height ="500px"/>
+
+## Adding Trigger - Step 2
+ 
+1. Once the deployment is complete, *select* StoreSimple_LA logic app. This will open up Logic App Designer blade and will offer you range of templates. *Select* Blank Template.
+ <img src="assets/Adding Trigger - Step 1 Select Blank Template.PNG" width="500px"/>
+ 
+2. It will then prompt you select connector and trigger. *Search* for ```Azure Queues``` and *Select* Azure Queues.
+ <img src="assets/Adding Trigger - Step 2 Select Azure Queues.PNG" width="500px"/>
+ 
+3. *Select* the trigger ```Azure Queues - When there are messages in a queue```.
+ <img src="assets/Adding Trigger - Step 3 Select AQ When There are messages in Queue.PNG" width="500px"/>	
+ 
+4. This will open Connection dialog box. *Enter* Connection  Name as ```StoreSimpleMsgQ_Con``` and *Select* the stroage account that contains the queue. 
+ <img src="assets/Adding Trigger - Step 4 Select the storage account.jpg" width="500px"/>
+ 
+5. It will then ask you to provide the Queue details. *Select* Queue.
+  <img src="assets/Adding Trigger - Step 5 Select Queue.jpg" width="500px"/>
