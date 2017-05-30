@@ -36,4 +36,4 @@ The steps here assume that you are logged into an account that has an Azure subs
  <img src="assets/Adding Trigger - Step 4 Select the storage account.jpg" width="500px"/>
  
 5. It will then ask you to provide the Queue details. *Select* Queue.
-  <img src="assets/Adding Trigger - Step 5 Select Queue.jpg" width="500px"/>
+  <img src="assets/Adding Trigger - Step 5 Select Queue.JPG" width="500px"/>
