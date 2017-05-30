@@ -45,7 +45,7 @@ The steps here assume that you are logged into an account that has an Azure subs
     
 ## Parsing Queue Message - Step 3
    
-1. *Click* Next Step and *Select* ```Add Action```.
+1. *Click* Next Step and *Select* ```Add Action```.<br/>
    <img src="assets/Parsing Queue Message - Step 1 Next Action after Message Recd.JPG" width="500px"/>
    
 2. *Search* for ```Parse``` and select This completes the trigger part of the Logic Apps. It will be good to save the configuraiton at this point. *Click* the ```Save``` button on the Logic Apps Designer tool bar. 
