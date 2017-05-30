@@ -45,7 +45,7 @@ The steps here assume that you are logged into an account that has an Azure subs
     
 ## Parsing Queue Message - Step 3
    
-1. *Click* Next Step and *Select* ```Add Action``` 
+1. *Click* Next Step and *Select* ```Add Action```.
    <img src="assets/Parsing Queue Message - Step 1 Next Action after Message Recd.JPG" width="500px"/>
    
 2. *Search* for ```Parse``` and select This completes the trigger part of the Logic Apps. It will be good to save the configuraiton at this point. *Click* the ```Save``` button on the Logic Apps Designer tool bar. 
@@ -53,8 +53,11 @@ The steps here assume that you are logged into an account that has an Azure subs
     
 3. *Select* ```Message Text``` by clicking ```Add Dynamic content +``` and selecting the ```Message Text``` item from the list.
    <img src="assets/Parsing Queue Message - Step 3 Select Message Text for content property.JPG" width="500px"/>
+   
 4. The portal allows you to generate the JSON schema based on sample record. *Copy* one of the JSON message from the queue. *Click* ```Use sample payload to generate schema``` and paste the JSON record. *Click* ```Done``` to generate the schema.
   <img src="assets/Parsing Queue Message - Step 4 Select generate schema from the data.JPG" width="500px"/>
+  
 5. Generated schema is populated in the ```Schema``` field.
   <img src="assets/Parsing Queue Message - Step 5 Parse Json Complete.JPG" width="500px"/>
+  
 6. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
