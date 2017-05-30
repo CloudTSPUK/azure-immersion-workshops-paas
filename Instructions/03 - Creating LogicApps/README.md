@@ -61,3 +61,18 @@ The steps here assume that you are logged into an account that has an Azure subs
   <img src="assets/Parsing Queue Message - Step 5 Parse Json Complete.JPG" width="500px"/>
   
 6. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
+
+## Persisting the Message - Step 4
+
+1. *Click* Next Step and *Select* ```Add Action``` 
+   <img src="assets/Persisting the Message - Step 1 Next Action after Message Parsed.jpg" width="500px"/>
+2. *Search" for '''SQL Server'''. *Select* '''SQL Server'''. 
+   <img src="assets/Persisting the Message - Step 2 Select SQL Server.JPG" width="500px"/>
+3. *Search" for '''SQL Server'''. *Select* '''SQL Server'''. 
+   <img src="assets/Persisting the Message - Step 2 Select Insert Row Action.JPG" width="500px"/>
+ 6. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
+
+## Notifing the Customer - Step 5
+6. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
+### Pre Requisite - Create Send Grid Account from the Market Place.
+
