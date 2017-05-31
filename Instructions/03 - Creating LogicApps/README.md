@@ -1,11 +1,12 @@
 # Persisting Orders & Sending customer notifications
 
 This scenario demonstrates how you can easily persist the orders in the database and send customer notifications using Logic Apps in the browser.
+
+
 ### Pre Requisite - 
 1) Create Send Grid Account from the Market Place.
 
-
-## Adding new Logic App - Step 1
+##  Step 1 - Adding new Logic App -
 
 The steps here assume that you are logged into an account that has an Azure subscription.
 
@@ -37,6 +38,7 @@ The steps here assume that you are logged into an account that has an Azure subs
  
 5. It will then ask you to provide the Queue details. *Select* Queue.
   <img src="assets/Adding Trigger - Step 5 Select Queue.JPG" width="500px"/>
+  
 6. *Update* the interval to ```1```. 
   <img src="assets/Adding Trigger - Step 6 Update the poll frequency.JPG" width="500px"/>
   
@@ -55,7 +57,7 @@ The steps here assume that you are logged into an account that has an Azure subs
    <img src="assets/Parsing Queue Message - Step 3 Select Message Text for content property.JPG" width="500px"/>
    
 4. The portal allows you to generate the JSON schema based on sample record. *Copy* following sample JSON message 
-``` 
+<pre><code> 
 {     
      "IdOrder": 0, 
      "BookId":3, 
@@ -71,7 +73,7 @@ The steps here assume that you are logged into an account that has an Azure subs
      "CreditCardNumber":"d3ea4d6e-3d79-464c-956c-f72240bfb76b",
      "Book":null
 }
-``` 
+</pre></code>
 *Click* ```Use sample payload to generate schema``` and paste the JSON record. *Click* ```Done``` to generate the schema.
 <img src="assets/Parsing Queue Message - Step 4 Select generate schema from the data.JPG" width="500px"/>
   
