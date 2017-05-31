@@ -130,8 +130,5 @@ The steps here assume that you are logged into an account that has an Azure subs
 5. *Map* Email message fields with message fields as shown in the image below. <br/>
  <img src="assets/Notifying the customer - Step 5 - Enter fields.JPG" width="500px"/>
 
- <img src="assets/Notifying the customer - Step 4 - Send Grid Connection.JPG" width="500px"/>
-
-1. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
-
-
+6. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.<br/>
+ <img src="assets/Notifying the customer - Step 6 - Save Logic Apps.JPG" width="500px"/>
