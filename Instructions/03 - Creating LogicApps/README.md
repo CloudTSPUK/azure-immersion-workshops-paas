@@ -8,7 +8,7 @@ Follow the guides below to create the Logic App.
 2. [Selecting Template and Trigger](SelectTemplateNTrigger.md)
 3. [Parsing Queue Message](ParsingQueueMessage.md)
 4. [Persisting the Message](PersistingMessage.md)
-5. [Configuring SendGrid Account](CreateSendGridAccount.md)
+5. [Subscribe to SendGrid Email delivery service](SubscribeSendGridService.md)
 6. [Notifying the Customer](NotifyingtheCustomer.md)
 7. [Deleting the Message](DeleteMessage.md)
 
