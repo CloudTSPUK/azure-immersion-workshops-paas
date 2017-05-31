@@ -55,20 +55,23 @@ The steps here assume that you are logged into an account that has an Azure subs
    <img src="assets/Parsing Queue Message - Step 3 Select Message Text for content property.JPG" width="500px"/>
    
 4. The portal allows you to generate the JSON schema based on sample record. *Copy* following sample JSON message 
-```{  "IdOrder": 0, 
-      "BookId":3, 
-      "OrderPlacedAtUtc": "2017-05-10T13:42:31.2887004Z",
-      "Quantity": 1, 
-      "TotalPrice": 19.0200, 
-      "FirstName":"John", 
-      "LastName":"Smith",
-      "Email":"John.Smith@gmail.com",
-      "TelephoneNumber":"00447971449042",
-      "HouseNumber":"1",
-      "PostCode":"RG1 1WG",
-      "CreditCardNumber":"d3ea4d6e-3d79-464c-956c-f72240bfb76b",
-      "Book":null
-}```.
+``` 
+{     
+     "IdOrder": 0, 
+     "BookId":3, 
+     "OrderPlacedAtUtc": "2017-05-10T13:42:31.2887004Z",
+     "Quantity": 1, 
+     "TotalPrice": 19.0200, 
+     "FirstName":"John", 
+     "LastName":"Smith",
+     "Email":"John.Smith@gmail.com",
+     "TelephoneNumber":"00447971449042",
+     "HouseNumber":"1",
+     "PostCode":"RG1 1WG",
+     "CreditCardNumber":"d3ea4d6e-3d79-464c-956c-f72240bfb76b",
+     "Book":null
+}
+``` 
 *Click* ```Use sample payload to generate schema``` and paste the JSON record. *Click* ```Done``` to generate the schema.
 <img src="assets/Parsing Queue Message - Step 4 Select generate schema from the data.JPG" width="500px"/>
   
@@ -81,28 +84,34 @@ The steps here assume that you are logged into an account that has an Azure subs
 
 ## Persisting the Message - Step 4
 
-1. *Click* Next Step and *Select* ```Add Action``` 
+1. *Click* Next Step and *Select* ```Add Action```. <br/>
    <img src="assets/Persisting the Message - Step 1 Next Action after Message Parsed.JPG" width="500px"/>
-2. *Search* for '''SQL Server'''. *Select* '''SQL Server'''. 
+   
+2. *Search* for ```SQL Server```. *Select* ```SQL Server``` <br/>
    <img src="assets/Persisting the Message - Step 2 Select SQL Server.JPG" width="500px"/>
-3. It will prompt for the SQL Server Action. *Select* '''SQL Server - Insert Row'''.  
+   
+3. It will prompt for the SQL Server Action. *Select* ```SQL Server - Insert Row```. <br/> 
    <img src="assets/Persisting the Message - Step 3 Select Insert Row Action.JPG" width="500px"/>
-4. *Select* SQL Server Instance.
+   
+4. *Select* SQL Server Instance.<br/>
    <img src="assets/Persisting the Message - Step 4 SQL Server Connection - Select SQL Server Instance.JPG" width="500px"/>
-5. *Select* SQL Server Database and *Set* ```User Name``` and ```Password```. *Click* ```Create``` button to create the connection.
+   
+5. *Select* SQL Server Database and *Set* ```User Name``` and ```Password```. *Click* ```Create``` button to create the connection. <br/>
    <img src="assets/Persisting the Message - Step 5 SQL Server Connection - Select SQL Server Database.JPG" width="500px"/>
-6. *Select* Table ```Order``` from the drop down list.
+   
+6. *Select* Table ```Order``` from the drop down list.<br/>
  <img src="assets/Persisting the Message - Step 6 Insert Row - Select Table.JPG" width="500px"/>
-7. *Map* the message fields to individual table columns. BookId and Quantity fields it does not allow to select the fields. You can temporarily map OrderPlacedAtUTC with OrderPlaceAtUtc, BookId and Quantity.
+ 
+7. *Map* the message fields to individual table columns. BookId and Quantity fields it does not allow to select the fields. You can temporarily map OrderPlacedAtUTC with OrderPlaceAtUtc, BookId and Quantity.<br/>
  <img src="assets/Persisting the Message - Step 7 Insert Row - Map Message fields to table columns.JPG" width="500px"/>
-8. *Update* the BookId and Quantity fields using '''Code View'''. Set BookId = '''@body('Parse_JSON')?['BookId']''', Quantity = '''@body('Parse_JSON')?['Quantity']'''
+8. *Update* the BookId and Quantity fields using ```Code View```. Set BookId = ```@body('Parse_JSON')?['BookId']```, Quantity = ```@body('Parse_JSON')?['Quantity']```.<br/>
  <img src="assets/Persisting the Message - Step 8 Insert Row - Edit fields.JPG" width="500px"/>
-9. Once all the fields are assigned completed mapping will look like following image.
+9. Once all the fields are assigned completed mapping will look like following image.<br/>
  <img src="assets/Persisting the Message - Step 9 Insert Row - Edit Fields Complete.JPG" width="500px"/>
-10. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
+10. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.<br/>
  <img src="assets/Persisting the Message - Step 10 Insert Row - Save Logic Apps.JPG" width="500px"/>
 
-## Notifing the Customer - Step 5
-6. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
+## Notifying the Customer - Step 5
+1. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
 ### Pre Requisite - Create Send Grid Account from the Market Place.
 
