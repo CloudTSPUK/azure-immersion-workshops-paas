@@ -1,4 +1,4 @@
-# [Selecting Template and Trigger
+# Selecting Template and Trigger
  
 1. Once the deployment is complete, *select* StoreSimple_LA logic app. This will open up Logic App Designer blade and will offer you range of templates. <Br/>
    *Select* Blank Template.<br/>
