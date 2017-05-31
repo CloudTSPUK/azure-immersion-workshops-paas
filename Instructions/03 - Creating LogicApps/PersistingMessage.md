@@ -30,4 +30,5 @@
 10. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.<br/>
     <img src="assets/Persisting the Message - Step 10 Insert Row - Save Logic Apps.JPG" width="500px"/>
 	
-Next Step  [Configuring SendGrid Account](CreateSendGridAccount.md)
+	
+Next Step [Subscribe to SendGrid Email delivery service](SubscribeSendGridService.md)
