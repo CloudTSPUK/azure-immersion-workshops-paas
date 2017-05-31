@@ -16,3 +16,5 @@
 
 6. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.<br/>
  <img src="assets/Notifying the customer - Step 6 - Save Logic Apps.JPG" width="500px"/>
+ 
+ Next Step  [Deleting the Message](DeleteMessage.md)

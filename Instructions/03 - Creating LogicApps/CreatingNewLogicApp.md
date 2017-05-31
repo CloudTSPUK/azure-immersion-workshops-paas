@@ -13,3 +13,6 @@ The steps here assume that you are logged into an account that has an Azure subs
 
 4. *Enter* Name ```StoreSimple_LA``` and selection Location as ```North Europe``` and *click* Create.
 <img src="assets/Creating Logic Apps - Step 4 Enter Parameters and Click Create.PNG" width="500px" height ="500px"/>
+
+Next Step [Selecting Template and Trigger](SelectTemplateNTrigger.md)
+
