@@ -2,13 +2,13 @@
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Newtonsoft.Json;
-using StoreSample.Web.Data;
-using StoreSample.Web.Models;
+using StoreSample.Data;
+using StoreSample.Models;
 using System;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace StoreSample.Web.Controllers
+namespace StoreSample.Controllers
 {
     public class BooksController : Controller
     {

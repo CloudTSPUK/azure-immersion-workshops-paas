@@ -1,7 +1,7 @@
-﻿using StoreSample.Web.Data;
+﻿using StoreSample.Data;
 using System;
 
-namespace StoreSample.Web.Models
+namespace StoreSample.Models
 {
     public static class ModelExtensions
     {

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\anvod\Documents\GitHub\azure-immersion-workshops-paas\StoreSample.Web\Data\StoreSampleModels.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\luked\Source\Repos\azure-immersion-workshops-paas\StoreSample\Data\StoreSampleModels.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

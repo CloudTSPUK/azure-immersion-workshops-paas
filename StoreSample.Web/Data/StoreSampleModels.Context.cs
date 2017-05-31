@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StoreSample.Web.Data
+namespace StoreSample.Data
 {
     using System;
     using System.Data.Entity;

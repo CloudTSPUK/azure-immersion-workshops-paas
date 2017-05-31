@@ -1,9 +1,9 @@
-﻿using StoreSample.Web.Data;
+﻿using StoreSample.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace StoreSample.Web.Controllers
+namespace StoreSample.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,7 +1,7 @@
-﻿using StoreSample.Web.Data;
+﻿using StoreSample.Data;
 using System.ComponentModel.DataAnnotations;
 
-namespace StoreSample.Web.Models
+namespace StoreSample.Models
 {
     /// <summary>
     /// This model contains all the details required to view & submit a book
