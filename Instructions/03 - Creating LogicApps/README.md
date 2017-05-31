@@ -3,7 +3,7 @@
 This scenario demonstrates how you can easily persist the orders in the database and send customer notifications using Logic Apps in the browser.
 ### Pre Requisite - 
 1) Create Send Grid Account from the Market Place.
-2) Add Sample Record Schema
+
 
 ## Adding new Logic App - Step 1
 
@@ -101,17 +101,37 @@ The steps here assume that you are logged into an account that has an Azure subs
    
 6. *Select* Table ```Order``` from the drop down list.<br/>
  <img src="assets/Persisting the Message - Step 6 Insert Row - Select Table.JPG" width="500px"/>
- 
+
 7. *Map* the message fields to individual table columns. BookId and Quantity fields it does not allow to select the fields. You can temporarily map OrderPlacedAtUTC with OrderPlaceAtUtc, BookId and Quantity.<br/>
  <img src="assets/Persisting the Message - Step 7 Insert Row - Map Message fields to table columns.JPG" width="500px"/>
+
 8. *Update* the BookId and Quantity fields using ```Code View```. Set BookId = ```@body('Parse_JSON')?['BookId']```, Quantity = ```@body('Parse_JSON')?['Quantity']```.<br/>
  <img src="assets/Persisting the Message - Step 8 Insert Row - Edit fields.JPG" width="500px"/>
+
 9. Once all the fields are assigned completed mapping will look like following image.<br/>
  <img src="assets/Persisting the Message - Step 9 Insert Row - Edit Fields Complete.JPG" width="500px"/>
+
 10. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.<br/>
  <img src="assets/Persisting the Message - Step 10 Insert Row - Save Logic Apps.JPG" width="500px"/>
 
 ## Notifying the Customer - Step 5
+1. *Click* Next Step and *Select* ```Add Action```. <br/>
+   <img src="assets/Notifying the customer - Step 1 - Next Action after Message persisted.JPG" width="500px"/>
+   
+2. *Search* for ```SendGrid```. *Select* ```SendGrid``` <br/>
+   <img src="assets/Notifying the customer - Step 2 - Add Send Grid.JPG" width="500px"/>
+
+3. *Select* ```SendGrid - Send Email``` action. <br/>
+ <img src="assets/Notifying the customer - Step 3 - Send Email Action.JPG" width="500px"/>
+
+4. *Enter* ```Connection Name``` "SendGridConnection". <br/>
+ <img src="assets/Notifying the customer - Step 4 - Send Grid Connection.JPG" width="500px"/>
+ 
+5. *Map* Email message fields with message fields as shown in the image below. <br/>
+ <img src="assets/Notifying the customer - Step 5 - Enter fields.JPG" width="500px"/>
+
+ <img src="assets/Notifying the customer - Step 4 - Send Grid Connection.JPG" width="500px"/>
+
 1. *Click* the ```Save``` button on the Logic Apps Designer tool bar to save the configuration.
-### Pre Requisite - Create Send Grid Account from the Market Place.
+
 
